@@ -190,10 +190,12 @@ class Level:
         if self.is_raining:
             self.soil_layer.water_all()
 
+        # Only create fruit on trees that are still alive
         for tree in self.sprite_groups["trees"].sprites():
-            for apple in tree.apple_sprites.sprites():
-                apple.kill()
-            tree.create_fruit()
+            if tree.alive:
+                for apple in tree.apple_sprites.sprites():
+                    apple.kill()
+                tree.create_fruit()
 
         self.sky.start_color = [255, 255, 255]
 
