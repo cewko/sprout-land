@@ -1,5 +1,6 @@
 import sys
 import pygame
+from pathlib import Path
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT
 from level import Level
 
@@ -12,6 +13,11 @@ class Game:
         pygame.display.set_caption("Sprout Land")
         self.clock = pygame.time.Clock()
         self.level = Level()
+
+        # Load and play background music
+        pygame.mixer.music.load(Path("audio/bg.mp3"))
+        pygame.mixer.music.set_volume(0.3)  # Adjust volume (0.0 to 1.0)
+        pygame.mixer.music.play(-1)  # -1 means loop indefinitely
 
     def run(self):
         while True:
